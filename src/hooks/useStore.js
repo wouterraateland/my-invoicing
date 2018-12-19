@@ -15,7 +15,7 @@ const getParts = (key, split) => Array.isArray(key)
 const useStore = ({
   initialState,
   rootReducer=identity,
-  enhancer=identity
+  enhancer=identity,
 }) => {
   const [state, setState] = useState(initialState || {})
 
