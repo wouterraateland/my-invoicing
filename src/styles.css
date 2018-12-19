@@ -35,21 +35,6 @@ body {
 	background-color: #555;
 	color: #222; }
 
-article {
-	position: relative;
-	display: block;
-
-	width: 210mm;
-	height: 296.9mm;
-	padding: 2cm;
-	margin: 0 auto 0;
-
-	background-color: #FFF;
-	background-image: url(/logo_bottom.svg);
-	background-size: 110%;
-	background-position: -100% 140%;
-	background-repeat: no-repeat; }
-
 h1 {
 	margin-bottom: .5em;
 
