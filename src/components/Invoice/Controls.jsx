@@ -24,14 +24,23 @@ const Control = styled.button`
   margin: 1em;
   border-radius: 100%;
 
+  box-shadow: 0 .5em 1.5em -.5em #0008;
+
   text-align: center;
   line-height: 5em;
 
   background-color: #444;
   color: #fff;
 
+  transition:
+    box-shadow .2s ease-out,
+    transform .2s ease-out,
+    background-color .2s ease-out;
+
   &:hover {
+    box-shadow: 0 1em 3em -.5em #0006;
     background-color: #333;
+    transform: translate(0, -.125em);
   }
 `
 
