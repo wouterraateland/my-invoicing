@@ -4,6 +4,7 @@ import moment from 'moment'
 import InvoiceContext from 'contexts/Invoice'
 
 import Editable from 'components/Editable'
+import Label from './Label'
 
 const InvoiceMeta = () => {
   const store = useContext(InvoiceContext)
@@ -16,7 +17,7 @@ const InvoiceMeta = () => {
       <Editable store={store} field="to.zipcode" placeholder="[Postcode]" />, <Editable store={store} field="to.city" placeholder="[Woonplaats]" /><br />
       <br />
       <strong>FACTUUR</strong><br />
-      <span className="subject">Factuurdatum</span>
+      <Label>Factuurdatum</Label>
       <Editable
         store={store}
         field="invoiceDate"
@@ -25,7 +26,7 @@ const InvoiceMeta = () => {
         placeholder={moment()}
       />
       <br />
-      <span className="subject">Factuurnummer</span><Editable store={store} field="reference" placeholder="yyyy.x" /><br />
+      <Label>Factuurnummer</Label><Editable store={store} field="reference" placeholder="yyyy.x" /><br />
       <br />
     </>
   )
