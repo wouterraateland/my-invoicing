@@ -10,6 +10,8 @@ import Table from './Table'
 import Summary from './Summary'
 import Footer from './Footer'
 
+import Controls from './Controls'
+
 const App = () => {
   return (
     <InvoiceProvider>
@@ -24,6 +26,7 @@ const App = () => {
         </main>
         <Footer />
   		</Paper>
+      <Controls />
     </InvoiceProvider>
   )
 }

@@ -13,6 +13,10 @@ strong { font-weight: 600; }
 
 a { color: inherit; }
 
+input, textarea, select, button {
+	font: inherit;
+}
+
 hr {
 	height: 1px;
 	margin: .5em 0;

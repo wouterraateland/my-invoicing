@@ -44,15 +44,11 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
 }
 
 const Table = () => {
-  const { state, setState } = useContext(InvoiceContext)
+  const { state, write } = useContext(InvoiceContext)
 
-  const writeLine = (i, newValue) => setState({
-    invoiceLines: replace(
-      state.invoiceLines,
-      i,
-      merge(state.invoiceLines[i], newValue)
-    )
-  })
+  const writeLine = (i, newValue) => write('invoiceLines', invoiceLines =>
+    replace(invoiceLines, i, merge(invoiceLines[i], newValue))
+  )
 
   return (
     <table>
