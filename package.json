@@ -1,7 +1,18 @@
 {
   "name": "my-invoicing",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
+  "homepage": "https://github.com/wouterraateland/my-invoicing",
+  "bugs": {
+    "url": "https://github.com/wouterraateland/my-invoicing/issues",
+    "email": "wouterraateland@gmail.com"
+  },
+  "license": "GNU GPLv3",
+  "author": {
+    "name": "Wouter Raateland",
+    "email": "wouterraateland@gmail.com",
+    "url": "https://wouterraateland.nl"
+  },
   "dependencies": {
     "deepmerge": "^3.0.0",
     "is-plain-object": "^2.0.4",
