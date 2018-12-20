@@ -9,3 +9,7 @@ My Invoicing allows you to create invoices like this:
 ![Screenshot](public/og-image.png)
 
 ## Contributing to this project
+Please take a moment to review the [guidelines for contributing](CONTRIBUTING.md).
+
+* [Pull requests](CONTRIBUTING.md#pull-requests)
+* [Development Process](CONTRIBUTING.md#development)
