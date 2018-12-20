@@ -1,4 +1,4 @@
-<img style="float: right" src="public/logo.svg" width="192" />
+<img align="right" src="public/logo.svg" width="128" />
 
 # My Invoicing
 Simple and efficient online invoicing solution for small companies.
