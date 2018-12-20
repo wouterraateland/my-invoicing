@@ -11,5 +11,6 @@ My Invoicing allows you to create invoices like this:
 ## Contributing to this project
 Please take a moment to review the [guidelines for contributing](CONTRIBUTING.md).
 
+* [Bugs](CONTRIBUTING.md#bugs)
+* [Features](CONTRIBUTING.md#features)
 * [Pull requests](CONTRIBUTING.md#pull-requests)
-* [Development Process](CONTRIBUTING.md#development)
