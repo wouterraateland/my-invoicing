@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 128">
-  <path d="M256 40v88H0V24c112.088.27 128.079 15.319 256 16z" fill="#EFD9FF"/>
-  <path d="M214.39 2.459C133.671 12.09 96.684 46.75 0 48v80h256V0c-15.212.053-28.949.948-41.61 2.459z" fill="#DFBFFF"/>
-</svg>
+<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 256 128" width="256" height="128"><defs><clipPath id="_clipPath_pXhc3IHzCQvVjFvfLtFUNYtgMpcOrYqK"><rect width="256" height="128"/></clipPath></defs><g clip-path="url(#_clipPath_pXhc3IHzCQvVjFvfLtFUNYtgMpcOrYqK)"><path d=" M 256 40 L 256 128 L 0 128 L 0 24 C 112.088 24.27 128.079 39.319 256 40 Z " fill="rgb(148,184,243)"/><path d=" M 214.39 2.459 C 133.671 12.09 96.684 46.75 0 48 L 0 128 L 256 128 L 256 0 C 240.788 0.053 227.051 0.948 214.39 2.459 Z " fill="rgb(72,135,233)"/></g></svg>
