@@ -12,9 +12,9 @@ import Footer from "./Footer"
 
 import Controls from "./Controls"
 
-const App = () => {
+const Invoice = ({ invoiceId }) => {
   return (
-    <InvoiceProvider>
+    <InvoiceProvider invoiceId={invoiceId}>
       <Helmet />
       <Paper>
         <Header />
@@ -31,4 +31,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Invoice

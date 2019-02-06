@@ -1,17 +1,23 @@
-import React from "react"
+import React, { useContext } from "react"
+import { Router, Redirect } from "@reach/router"
 
-import ErrorBoundary from "components/ErrorBoundary"
-import Invoice from "components/Invoice"
-import InfoButton from "components/InfoButton"
-import Onboarding from "components/Onboarding"
+import InvoicesContext from "contexts/Invoices"
+
+import OverviewPage from "pages/overview"
+import InvoicePage from "pages/invoice"
 
 const App = () => {
+  const { invoices } = useContext(InvoicesContext)
+
   return (
-    <ErrorBoundary>
-      <Invoice />
-      <InfoButton />
-      <Onboarding />
-    </ErrorBoundary>
+    <Router>
+      <InvoicePage path="/" />
+      <OverviewPage path="/invoices" />
+      {invoices.map(({ id }) => (
+        <InvoicePage key={id} path={`/invoice/${id}`} />
+      ))}
+      <Redirect to="/invoices" from="/invoice" default noThrow />
+    </Router>
   )
 }
 

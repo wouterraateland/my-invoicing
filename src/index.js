@@ -4,12 +4,15 @@ import "./styles.css"
 import * as serviceWorker from "./serviceWorker"
 
 import { ProfileProvider } from "contexts/Profile"
+import { InvoicesProvider } from "contexts/Invoices"
 
 import App from "components/App"
 
 const Root = (
   <ProfileProvider>
-    <App />
+    <InvoicesProvider>
+      <App />
+    </InvoicesProvider>
   </ProfileProvider>
 )
 

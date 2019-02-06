@@ -25,6 +25,7 @@ button {
 }
 
 hr {
+	clear: both;
 	height: 1pt;
 	margin: .5em 0;
 
@@ -46,40 +47,10 @@ body {
 	font-weight: 100;
 	line-height: 1.5;
 
-	background-color: #555;
 	color: #222;
+	background-color: #f7f8f8;
 }
 
-h1 {
-	margin-bottom: .5em;
-
-	text-transform: uppercase;
-	font-size: 32pt;
-	font-weight: 600;
-}
-
-h2 {
-	width: 5.5cm;
-	margin-bottom: 9pt;
-
-	font-weight: 600;
-	font-size: 11pt;
-}
-
-main {
-	margin-left: 2.75cm;
-	margin-top: 55pt;
-}
-
-table {
-	border-collapse: collapse;
-	width: 100%;
-}
-
-th {
-	border: none;
-	border-bottom: 1px solid;
-
-	text-align: left;
+h1, h2, h3, h4, h5, h6 {
 	font-weight: 600;
 }

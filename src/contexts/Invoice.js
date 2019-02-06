@@ -5,8 +5,11 @@ import useStore from "hooks/useStore"
 
 const InvoiceContext = createContext({})
 
-export const InvoiceProvider = ({ invoice, ...rest }) => {
-  const value = useStore({ initialState: invoice })
+export const InvoiceProvider = ({ invoiceId, invoice, ...rest }) => {
+  const value = useStore({
+    name: `my-invoicing/invoices/${invoiceId}`,
+    initialState: invoice
+  })
 
   return <InvoiceContext.Provider value={value} {...rest} />
 }

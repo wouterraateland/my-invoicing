@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import merge from "deepmerge"
 import ContentEditable from "react-simple-contenteditable"
 
-import { noop, replace } from "utils/functions"
+import _ from "utils"
 
 import InvoiceContext from "contexts/Invoice"
 
@@ -13,14 +13,14 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
     <tr>
       <ContentEditable
         tabIndex={1}
-        onKeyPress={noop}
+        onKeyPress={_.noop}
         tagName="td"
         html={description || "[Omschrijving]"}
         onChange={(_, description) => write({ description })}
       />
       <ContentEditable
         tabIndex={1}
-        onKeyPress={noop}
+        onKeyPress={_.noop}
         tagName="td"
         html={quantity}
         onChange={(_, quantity) =>
@@ -31,7 +31,7 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
       />
       <ContentEditable
         tabIndex={1}
-        onKeyPress={noop}
+        onKeyPress={_.noop}
         tagName="td"
         html={currencyFormatter.format(amount)}
         onChange={(_, amount) =>
@@ -54,7 +54,7 @@ const Table = () => {
 
   const writeLine = (i, newValue) =>
     write("invoiceLines", invoiceLines =>
-      replace(invoiceLines, i, merge(invoiceLines[i], newValue))
+      _.replace(invoiceLines, i, merge(invoiceLines[i], newValue))
     )
 
   return (
