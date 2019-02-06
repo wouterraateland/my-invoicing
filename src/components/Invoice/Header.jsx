@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
+import React, { useContext } from "react"
+import styled from "styled-components"
 
-import ProfileContext from 'contexts/Profile'
+import ProfileContext from "contexts/Profile"
 
-import Editable from 'components/Editable'
-import HiddenInput from 'components/HiddenInput'
-import DropZone from 'components/DropZone'
+import Editable from "components/Editable"
+import HiddenInput from "components/HiddenInput"
+import DropZone from "components/DropZone"
 
-import defaultLogo from 'assets/default-logo.svg'
+import defaultLogo from "assets/default-logo.svg"
 
 const ClickableDropZone = styled(DropZone)`
   cursor: pointer;
@@ -43,7 +43,7 @@ const Header = () => {
     var reader = new FileReader()
 
     reader.onloadend = () => {
-      write('logo', reader.result)
+      write("logo", reader.result)
     }
 
     reader.readAsDataURL(file)
@@ -65,28 +65,41 @@ const Header = () => {
     <header>
       <ClickableDropZone as="label" onDrop={handleDrop}>
         <HiddenInput type="file" accept="image/*" onChange={handleInput} />
-        <Logo src={read('logo', defaultLogo)} alt={read('name')} />
+        <Logo src={read("logo", defaultLogo)} alt={read("name")} />
       </ClickableDropZone>
       <Info>
-        <Editable as="h2" store={store} field="name" placeholder="[Bedrijfsnaam]" />
+        <Editable
+          as="h2"
+          store={store}
+          field="name"
+          placeholder="[Bedrijfsnaam]"
+        />
         <strong>Adres</strong>
         <Editable store={store} field="address" placeholder="[Adres]" />
         <br />
-        <strong></strong>
-        <Editable store={store} field="zipcode" placeholder="[Postcode]" />,
-        {' '}
-        <Editable store={store} field="city" placeholder="[Woonplaats]" />
+        <strong />
+        <Editable
+          store={store}
+          field="zipcode"
+          placeholder="[Postcode]"
+        />, <Editable store={store} field="city" placeholder="[Woonplaats]" />
         <br />
         <br />
-        <strong>Bel</strong><a href={`tel:${read('phone')}`}>
+        <strong>Bel</strong>
+        <a href={`tel:${read("phone")}`}>
           <Editable store={store} field="phone" placeholder="[Telefoon]" />
         </a>
         <br />
-        <strong>Mail</strong><a href={`mailto:${read('email')}`}>
+        <strong>Mail</strong>
+        <a href={`mailto:${read("email")}`}>
           <Editable store={store} field="email" placeholder="[E-mail adres]" />
         </a>
         <br />
-        <strong>Bezoek</strong><a href={`https://${read('web')}`}><Editable store={store} field="web" placeholder="[Website]" /></a><br />
+        <strong>Bezoek</strong>
+        <a href={`https://${read("web")}`}>
+          <Editable store={store} field="web" placeholder="[Website]" />
+        </a>
+        <br />
         <br />
         <strong>BTW</strong>
         <Editable store={store} field="vat" placeholder="[BTW nummer]" />

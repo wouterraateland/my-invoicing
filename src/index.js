@@ -1,11 +1,11 @@
-import React from 'react'
-import { render, hydrate } from 'react-dom'
-import './styles.css'
-import * as serviceWorker from './serviceWorker'
+import React from "react"
+import { render, hydrate } from "react-dom"
+import "./styles.css"
+import * as serviceWorker from "./serviceWorker"
 
-import { ProfileProvider } from 'contexts/Profile'
+import { ProfileProvider } from "contexts/Profile"
 
-import App from 'components/App'
+import App from "components/App"
 
 const Root = (
   <ProfileProvider>
@@ -13,7 +13,7 @@ const Root = (
   </ProfileProvider>
 )
 
-const root = document.getElementById('app-root')
+const root = document.getElementById("app-root")
 
 if (root.hasChildNodes()) {
   hydrate(Root, root)

@@ -1,19 +1,14 @@
-import React, { createContext } from 'react'
-import moment from 'moment'
+import React, { createContext } from "react"
+import moment from "moment"
 
-import useStore from 'hooks/useStore'
+import useStore from "hooks/useStore"
 
 const InvoiceContext = createContext({})
 
 export const InvoiceProvider = ({ invoice, ...rest }) => {
   const value = useStore({ initialState: invoice })
 
-  return (
-    <InvoiceContext.Provider
-      value={value}
-      {...rest}
-    />
-  )
+  return <InvoiceContext.Provider value={value} {...rest} />
 }
 
 InvoiceProvider.defaultProps = {
@@ -23,17 +18,17 @@ InvoiceProvider.defaultProps = {
       name: null,
       address: null,
       zipcode: null,
-      city: null,
+      city: null
     },
     invoiceDate: moment(),
-    reference: `${moment().format('YYYY')}.x`,
+    reference: `${moment().format("YYYY")}.x`,
     invoiceLines: [
       {
         description: null,
         quantity: 1,
-        amount: null,
-      },
-    ],
+        amount: null
+      }
+    ]
   }
 }
 

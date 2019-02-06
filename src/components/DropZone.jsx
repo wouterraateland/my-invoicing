@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import React, { useState } from "react"
+import styled, { css } from "styled-components"
 
 const DropZone = styled.div`
   display: inline-block;
 
-  ${props => props.dragging && css`
-    box-shadow: 0 0 2em #fc6;
-  `}
+  ${props =>
+    props.dragging &&
+    css`
+      box-shadow: 0 0 2em #fc6;
+    `};
 `
 
 export default ({ onDrop, ...rest }) => {

@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
+import React, { useContext } from "react"
+import styled from "styled-components"
 
-import ProfileContext from 'contexts/Profile'
+import ProfileContext from "contexts/Profile"
 
-import Button from 'components/Button'
+import Button from "components/Button"
 
 const InfoButton = styled(Button)`
   position: fixed;
@@ -18,10 +18,12 @@ export default () => {
   const { write } = useContext(ProfileContext)
 
   function onClick() {
-    write('step', 0)
+    write("step", 0)
   }
 
   return (
-    <InfoButton onClick={onClick}><em>i</em></InfoButton>
+    <InfoButton onClick={onClick}>
+      <em>i</em>
+    </InfoButton>
   )
 }

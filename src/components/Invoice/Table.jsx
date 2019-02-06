@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import merge from 'deepmerge'
-import ContentEditable from 'react-simple-contenteditable'
+import React, { useContext } from "react"
+import merge from "deepmerge"
+import ContentEditable from "react-simple-contenteditable"
 
-import { noop, replace } from 'utils/functions'
+import { noop, replace } from "utils/functions"
 
-import InvoiceContext from 'contexts/Invoice'
+import InvoiceContext from "contexts/Invoice"
 
-import Currency, { currencyFormatter } from 'components/Currency'
+import Currency, { currencyFormatter } from "components/Currency"
 
 const InvoiceLine = ({ description, quantity, amount, write }) => {
   return (
@@ -15,7 +15,7 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
         tabIndex={1}
         onKeyPress={noop}
         tagName="td"
-        html={description || '[Omschrijving]'}
+        html={description || "[Omschrijving]"}
         onChange={(_, description) => write({ description })}
       />
       <ContentEditable
@@ -23,22 +23,28 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
         onKeyPress={noop}
         tagName="td"
         html={quantity}
-        onChange={(_, quantity) => write({
-          quantity: parseInt(quantity, 10)
-        })}
+        onChange={(_, quantity) =>
+          write({
+            quantity: parseInt(quantity, 10)
+          })
+        }
       />
       <ContentEditable
         tabIndex={1}
         onKeyPress={noop}
         tagName="td"
         html={currencyFormatter.format(amount)}
-        onChange={(_, amount) => write({
-          amount: parseFloat(amount
-            .replace(/[^0-9.,-]+/g, '')
-            .replace(',', '.'))
-        })}
+        onChange={(_, amount) =>
+          write({
+            amount: parseFloat(
+              amount.replace(/[^0-9.,-]+/g, "").replace(",", ".")
+            )
+          })
+        }
       />
-      <td><Currency amount={quantity * amount} /></td>
+      <td>
+        <Currency amount={quantity * amount} />
+      </td>
     </tr>
   )
 }
@@ -46,18 +52,19 @@ const InvoiceLine = ({ description, quantity, amount, write }) => {
 const Table = () => {
   const { state, write } = useContext(InvoiceContext)
 
-  const writeLine = (i, newValue) => write('invoiceLines', invoiceLines =>
-    replace(invoiceLines, i, merge(invoiceLines[i], newValue))
-  )
+  const writeLine = (i, newValue) =>
+    write("invoiceLines", invoiceLines =>
+      replace(invoiceLines, i, merge(invoiceLines[i], newValue))
+    )
 
   return (
     <table>
       <thead>
         <tr>
-          <th style={{ width: '8.75cm' }}>Omschrijving</th>
+          <th style={{ width: "8.75cm" }}>Omschrijving</th>
           <th>Aantal</th>
           <th>Per stuk</th>
-          <th style={{ width: '2cm' }}>Totaal</th>
+          <th style={{ width: "2cm" }}>Totaal</th>
         </tr>
       </thead>
       <tbody>

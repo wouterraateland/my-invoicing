@@ -1,14 +1,15 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
+import React, { useContext } from "react"
+import styled from "styled-components"
 
-import InvoiceContext from 'contexts/Invoice'
+import InvoiceContext from "contexts/Invoice"
 
-import Button from 'components/Button'
+import Button from "components/Button"
 
 const ControlsWrapper = styled.div`
   position: fixed;
   left: 1em;
-  bottom: 1em; right: 1em;
+  bottom: 1em;
+  right: 1em;
 
   @media print {
     display: none;
@@ -30,9 +31,9 @@ const Controls = () => {
   const { write } = useContext(InvoiceContext)
 
   function addRow() {
-    write('invoiceLines', invoiceLines => [
+    write("invoiceLines", invoiceLines => [
       ...invoiceLines,
-      { description: '', quantity: 1, amount: 0 },
+      { description: "", quantity: 1, amount: 0 }
     ])
   }
 

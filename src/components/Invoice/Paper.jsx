@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
-import styled from 'styled-components'
+import React, { useContext } from "react"
+import styled from "styled-components"
 
-import ProfileContext from 'contexts/Profile'
+import ProfileContext from "contexts/Profile"
 
-import DropZone from 'components/DropZone'
+import DropZone from "components/DropZone"
 
-import defaultBackground from 'assets/default-background.svg'
+import defaultBackground from "assets/default-background.svg"
 
 const PAPER_DIMENSIONS = {
-  'A4': { width: '210mm', height: '296.9mm' },
+  A4: { width: "210mm", height: "296.9mm" }
 }
 
 const StyledPaper = styled.article`
@@ -31,7 +31,7 @@ const Paper = props => {
     var reader = new FileReader()
 
     reader.onloadend = () => {
-      write('background', reader.result)
+      write("background", reader.result)
     }
 
     reader.readAsDataURL(file)
@@ -47,14 +47,14 @@ const Paper = props => {
     <DropZone
       as={StyledPaper}
       onDrop={handleDrop}
-      bgImage={read('background', defaultBackground)}
+      bgImage={read("background", defaultBackground)}
       {...props}
     />
   )
 }
 
 Paper.defaultProps = {
-  format: 'A4'
+  format: "A4"
 }
 
 export default Paper

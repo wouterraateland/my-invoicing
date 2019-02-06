@@ -2,10 +2,9 @@ export const noop = () => {}
 export const identity = x => x
 export const constant = x => () => x
 
-export const log = (f, name) => (...args) => {
-  const output = f(args)
-  console.log(`${name}: ${args} -> ${output}`)
-  return output
+export const log = v => {
+  console.log(v)
+  return v
 }
 
 export const replace = (xs, i, x) => [

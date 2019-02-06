@@ -1,48 +1,49 @@
-import { useState } from 'react'
-import merge from 'deepmerge'
-import isPlainObject from 'is-plain-object'
+import { useState } from "react"
+import merge from "deepmerge"
+import isPlainObject from "is-plain-object"
 
-import { identity, constant } from 'utils/functions'
+import { identity, constant } from "utils/functions"
 
 const options = {
   isMergeableObject: isPlainObject
 }
 
-const getParts = (key, split) => Array.isArray(key)
-  ? key
-  : (split ? key.split('.') : [key])
+const getParts = (key, split) =>
+  Array.isArray(key) ? key : split ? key.split(".") : [key]
 
 const useStore = ({
   initialState,
-  rootReducer=identity,
-  enhancer=identity,
+  rootReducer = identity,
+  enhancer = identity
 }) => {
   const [state, setState] = useState(initialState || {})
 
-  const read = (key, defaultValue=undefined, split=true) => getParts(key, split)
-    .reduce(
-      (value, part) => value[part] === undefined
-        ? defaultValue : value[part],
+  const read = (key, defaultValue = undefined, split = true) =>
+    getParts(key, split).reduce(
+      (value, part) => (value[part] === undefined ? defaultValue : value[part]),
       state
     )
 
   return {
     state,
     read,
-    setState: newState => setState(state => enhancer(merge(state, newState, options))),
+    setState: newState =>
+      setState(state => enhancer(merge(state, newState, options))),
     dispatch: action => setState(state => enhancer(rootReducer(state, action))),
-    write: (key, newValue, split=true) => {
+    write: (key, newValue, split = true) => {
       const parts = getParts(key, split)
 
       return setState(state =>
-        enhancer(merge(
-          state,
-          parts.reduceRight(
-            (v, part) => ({ [part]: v }),
-            typeof newValue === 'function' ? newValue(read(parts)) : newValue
-          ),
-          options
-        ))
+        enhancer(
+          merge(
+            state,
+            parts.reduceRight(
+              (v, part) => ({ [part]: v }),
+              typeof newValue === "function" ? newValue(read(parts)) : newValue
+            ),
+            options
+          )
+        )
       )
     }
   }
@@ -55,18 +56,15 @@ export const createPersistentStoreCreator = ({
   deserialize,
   load,
   save
-}) => ({
-  name='store',
-  persistKey=constant(true),
-  initialState,
-}) => ({
+}) => ({ name = "store", persistKey = constant(true), initialState }) => ({
   initialState: deserialize(load(name)) || initialState,
   enhancer: state => {
     save(
       name,
-      serialize(Object.keys(state)
-        .filter(persistKey)
-        .reduce((acc, key) => ({ ...acc, [key]: state[key] }), {})
+      serialize(
+        Object.keys(state)
+          .filter(persistKey)
+          .reduce((acc, key) => ({ ...acc, [key]: state[key] }), {})
       )
     )
     return state
