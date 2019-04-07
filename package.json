@@ -2,7 +2,7 @@
   "name": "my-invoicing",
   "version": "0.2.0",
   "private": false,
-  "homepage": "https://github.com/wouterraateland/my-invoicing",
+  "homepage": "https://my-invoicing.netlify.com/",
   "bugs": {
     "url": "https://github.com/wouterraateland/my-invoicing/issues",
     "email": "wouterraateland@gmail.com"
