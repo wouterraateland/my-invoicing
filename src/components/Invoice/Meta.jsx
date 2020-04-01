@@ -17,7 +17,7 @@ const InvoiceMeta = () => {
   return (
     <>
       <StrongEditable
-        value={read`to.company`}
+        value={read("to.company")}
         onChange={v => write(`to.company`, v)}
         placeholder="[Bedrijfsnaam]"
         minWidth={85}
@@ -26,7 +26,7 @@ const InvoiceMeta = () => {
       <span>
         Tav{" "}
         <Editable
-          value={read`to.name`}
+          value={read("to.name")}
           onChange={v => write(`to.name`, v)}
           placeholder="[Naam]"
           minWidth={41}
@@ -34,21 +34,21 @@ const InvoiceMeta = () => {
       </span>
       <br />
       <Editable
-        value={read`to.address`}
+        value={read("to.address")}
         onChange={v => write(`to.address`, v)}
         placeholder="[Adres]"
         minWidth={40}
       />
       <br />
       <Editable
-        value={read`to.zipcode`}
+        value={read("to.zipcode")}
         onChange={v => write(`to.zipcode`, v)}
         placeholder="[Postcode]"
         minWidth={57}
       />
       ,{" "}
       <Editable
-        value={read`to.city`}
+        value={read("to.city")}
         onChange={v => write(`to.city`, v)}
         placeholder="[Woonplaats]"
         minWidth={72}
@@ -61,7 +61,7 @@ const InvoiceMeta = () => {
       <Editable
         type="date"
         format="dd-mm-yyyy"
-        value={moment(read`invoiceDate`).format("YYYY-MM-DD")}
+        value={moment(read("invoiceDate")).format("YYYY-MM-DD")}
         onChange={v => write(`invoiceDate`, moment(v).unix() * 1000)}
         field="invoiceDate"
         minWidth={120}
@@ -69,7 +69,7 @@ const InvoiceMeta = () => {
       <br />
       <Label>Factuurnummer</Label>
       <Editable
-        value={read`reference`}
+        value={read("reference")}
         onChange={v => write(`reference`, v)}
         placeholder="yyyy.x"
         minWidth={50}

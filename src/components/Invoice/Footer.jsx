@@ -27,7 +27,7 @@ const Footer = () => {
       <p>
         Graag binnen 30 dagen betalen onder vermelding van factuurnummer{" "}
         <Editable
-          value={read`reference`}
+          value={read("reference")}
           onChange={v => write("reference", v)}
           placeholder="yyyy.x"
           minWidth={80}

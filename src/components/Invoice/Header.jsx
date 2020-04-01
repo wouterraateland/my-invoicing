@@ -79,18 +79,18 @@ const Header = () => {
     <header>
       <ClickableDropZone as="label" onDrop={handleDrop}>
         <HiddenInput type="file" accept="image/*" onChange={handleInput} />
-        <Logo src={read("logo", defaultLogo)} alt={read`name`} />
+        <Logo src={read("logo", defaultLogo)} alt={read("name")} />
       </ClickableDropZone>
       <Info>
         <H2Editable
-          value={read`name`}
+          value={read("name")}
           onChange={v => write("name", v)}
           placeholder="[Bedrijfsnaam]"
           minWidth={100}
         />
         <strong>Adres</strong>
         <Editable
-          value={read`address`}
+          value={read("address")}
           onChange={v => write("address", v)}
           placeholder="[Adres]"
           minWidth={40}
@@ -98,14 +98,14 @@ const Header = () => {
         <br />
         <strong />
         <Editable
-          value={read`zipcode`}
+          value={read("zipcode")}
           onChange={v => write("zipcode", v)}
           placeholder="[Postcode]"
           minWidth={57}
         />
         ,{" "}
         <Editable
-          value={read`city`}
+          value={read("city")}
           onChange={v => write("city", v)}
           placeholder="[Woonplaats]"
           minWidth={72}
@@ -113,9 +113,9 @@ const Header = () => {
         <br />
         <br />
         <strong>Bel</strong>
-        <a href={`tel:${read`phone`}`}>
+        <a href={`tel:${read("phone")}`}>
           <Editable
-            value={read`phone`}
+            value={read("phone")}
             onChange={v => write("phone", v)}
             placeholder="[Telefoon]"
             minWidth={100}
@@ -123,9 +123,9 @@ const Header = () => {
         </a>
         <br />
         <strong>Mail</strong>
-        <a href={`mailto:${read`email`}`}>
+        <a href={`mailto:${read("email")}`}>
           <Editable
-            value={read`email`}
+            value={read("email")}
             onChange={v => write("email", v)}
             placeholder="[E-mail adres]"
             minWidth={100}
@@ -133,9 +133,9 @@ const Header = () => {
         </a>
         <br />
         <strong>Bezoek</strong>
-        <a href={`https://${read`web`}`}>
+        <a href={`https://${read("web")}`}>
           <Editable
-            value={read`web`}
+            value={read("web")}
             onChange={v => write("web", v)}
             placeholder="[Website]"
             minWidth={100}
@@ -145,7 +145,7 @@ const Header = () => {
         <br />
         <strong>BTW</strong>
         <Editable
-          value={read`vat`}
+          value={read("vat")}
           onChange={v => write("vat", v)}
           placeholder="[BTW nummer]"
           minWidth={100}
@@ -153,7 +153,7 @@ const Header = () => {
         <br />
         <strong>KvK</strong>
         <Editable
-          value={read`kvk`}
+          value={read("kvk")}
           onChange={v => write("kvk", v)}
           placeholder="[KvK nummer]"
           minWidth={100}
@@ -161,7 +161,7 @@ const Header = () => {
         <br />
         <strong>IBAN</strong>
         <Editable
-          value={read`iban`}
+          value={read("iban")}
           onChange={v => write("iban", v)}
           placeholder="[IBAN nummer]"
           minWidth={100}
