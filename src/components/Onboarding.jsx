@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react"
-import styled, { css } from "styled-components"
+import React, { useContext, useState, useEffect } from "react";
+import styled, { css } from "styled-components";
 
-import ProfileContext from "contexts/Profile"
+import ProfileContext from "contexts/Profile";
 
-import Modal from "components/Modal"
+import Modal from "components/Modal";
 
 // 'Hi there, thanks for checking out My Invoicing. The simplest free online invoicing application. Click anywhere to continue.'
 // 'You can fill in your information in by just typing in the fields. Your profile will be saved across all your invoices.'
@@ -17,7 +17,7 @@ const stepDescriptions = [
   "Wanneer je de prijs en hoeveelheid invult, wordt het totaal automatisch berekend.",
   "Voeg een factuurregel toe door hier te klikken.",
   "Dat is het voor nu! Veel plezier met het maken van jouw facturen 😄"
-]
+];
 
 const steps = [
   {
@@ -55,7 +55,7 @@ const steps = [
     size: "1em",
     position: "below"
   }
-]
+];
 
 const Onboarding = styled.div.attrs(({ step }) => ({
   style: {
@@ -85,7 +85,7 @@ const Onboarding = styled.div.attrs(({ step }) => ({
     right: -100vmax;
     bottom: -100vmax;
   }
-`
+`;
 
 const Explanation = styled.p`
   position: absolute;
@@ -97,45 +97,45 @@ const Explanation = styled.p`
           right: 100%;
           top: 50%;
           transform: translate(0, -50%);
-        `
+        `;
       case "above":
         return css`
           bottom: 100%;
           left: 50%;
           transform: translate(-50%, 0);
-        `
+        `;
       case "right":
         return css`
           left: 100%;
           top: 50%;
           transform: translate(0, -50%);
-        `
+        `;
       default:
         return css`
           top: 100%;
           left: 50%;
           transform: translate(-50%, 0);
-        `
+        `;
     }
   }} width: 30vw;
   max-width: 30em;
   padding: 1em;
 
   color: #fff;
-`
+`;
 
 export default () => {
-  const [el, setEl] = useState(null)
-  const { read, write } = useContext(ProfileContext)
+  const [el, setEl] = useState(null);
+  const { read, write } = useContext(ProfileContext);
 
   useEffect(() => {
-    setEl(document.createElement("div"))
-  }, [])
+    setEl(document.createElement("div"));
+  }, []);
 
-  const step = steps[read("step", 0)]
+  const step = steps[read("step", 0)];
 
   function next() {
-    write("step", step => (step ? step + 1 : 1))
+    write("step", step => (step ? step + 1 : 1));
   }
 
   return el ? (
@@ -146,5 +146,5 @@ export default () => {
         </Onboarding>
       ) : null}
     </Modal>
-  ) : null
-}
+  ) : null;
+};

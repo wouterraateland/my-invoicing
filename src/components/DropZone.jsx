@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import styled, { css } from "styled-components"
+import React, { useCallback, useState } from "react";
+import styled, { css } from "styled-components";
 
 const DropZone = styled.div`
   display: inline-block;
@@ -9,30 +9,39 @@ const DropZone = styled.div`
     css`
       box-shadow: 0 0 2em #fc6;
     `};
-`
+`;
 
 export default ({ onDrop, ...rest }) => {
-  const [dragging, setDragging] = useState(false)
+  const [dragging, setDragging] = useState(false);
 
-  function prevent(event) {
-    event.preventDefault()
-    event.stopPropagation()
-  }
+  const prevent = useCallback(event => {
+    event.preventDefault();
+    event.stopPropagation();
+  }, []);
 
-  function onDragEnter(event) {
-    prevent(event)
-    setDragging(true)
-  }
+  const onDragEnter = useCallback(
+    event => {
+      prevent(event);
+      setDragging(true);
+    },
+    [prevent]
+  );
 
-  function onDragOver(event) {
-    prevent(event)
-    setDragging(true)
-  }
+  const onDragOver = useCallback(
+    event => {
+      prevent(event);
+      setDragging(true);
+    },
+    [prevent]
+  );
 
-  function onDragLeave(event) {
-    prevent(event)
-    setDragging(false)
-  }
+  const onDragLeave = useCallback(
+    event => {
+      prevent(event);
+      setDragging(false);
+    },
+    [prevent]
+  );
 
   return (
     <DropZone
@@ -41,11 +50,11 @@ export default ({ onDrop, ...rest }) => {
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={event => {
-        prevent(event)
-        setDragging(false)
-        onDrop(event)
+        prevent(event);
+        setDragging(false);
+        onDrop(event);
       }}
       {...rest}
     />
-  )
-}
+  );
+};

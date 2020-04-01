@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import styled from "styled-components"
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Error = styled.div`
   position: fixed;
@@ -11,20 +11,20 @@ const Error = styled.div`
   padding: 2em;
   background-color: #f12;
   color: #fff;
-`
+`;
 
 class ErrorBoundary extends Component {
   state = {
     error: false
-  }
+  };
 
   static getDerivedStateFromError(error) {
-    return { error }
+    return { error };
   }
 
   componentDidCatch(error, info) {
-    console.error(error)
-    console.log(info)
+    console.error(error);
+    console.log(info);
   }
 
   render() {
@@ -35,8 +35,8 @@ class ErrorBoundary extends Component {
       </Error>
     ) : (
       this.props.children
-    )
+    );
   }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;

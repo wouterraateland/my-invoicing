@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Label = styled.label`
   float: left;
@@ -6,6 +6,6 @@ const Label = styled.label`
   margin-left: -2.75cm;
 
   opacity: 0.5;
-`
+`;
 
-export default Label
+export default Label;

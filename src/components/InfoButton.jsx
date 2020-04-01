@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+import React, { useCallback, useContext } from "react";
+import styled from "styled-components";
 
-import ProfileContext from "contexts/Profile"
+import ProfileContext from "contexts/Profile";
 
-import Button from "components/Button"
+import Button from "components/Button";
 
 const InfoButton = styled(Button)`
   position: fixed;
@@ -12,18 +12,22 @@ const InfoButton = styled(Button)`
 
   border-radius: 100%;
   width: 1.5em;
-`
+
+  @media print {
+    display: none;
+  }
+`;
 
 export default () => {
-  const { write } = useContext(ProfileContext)
+  const { write } = useContext(ProfileContext);
 
-  function onClick() {
-    write("step", 0)
-  }
+  const onClick = useCallback(() => {
+    write("step", 0);
+  }, [write]);
 
   return (
     <InfoButton onClick={onClick}>
       <em>i</em>
     </InfoButton>
-  )
-}
+  );
+};

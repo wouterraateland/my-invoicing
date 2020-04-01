@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+import React, { useContext } from "react";
+import styled from "styled-components";
 
-import InvoiceContext from "contexts/Invoice"
+import InvoiceContext from "contexts/Invoice";
 
-import Currency from "components/Currency"
-import Label from "./Label"
+import Currency from "components/Currency";
+import Label from "./Label";
 
 const Sum = styled.div`
   float: right;
@@ -15,15 +15,15 @@ const Sum = styled.div`
     display: block;
     clear: both;
   }
-`
+`;
 
 const Summary = () => {
-  const { state } = useContext(InvoiceContext)
+  const { read } = useContext(InvoiceContext);
 
-  const subTotal = state.invoiceLines.reduce(
+  const subTotal = read("invoiceLines").reduce(
     (acc, { amount, quantity }) => acc + amount * quantity,
     0
-  )
+  );
 
   return (
     <Sum>
@@ -38,7 +38,7 @@ const Summary = () => {
       <Currency amount={subTotal * 1.21} />
       <br />
     </Sum>
-  )
-}
+  );
+};
 
-export default Summary
+export default Summary;

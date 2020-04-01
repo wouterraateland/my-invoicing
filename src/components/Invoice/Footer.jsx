@@ -1,9 +1,9 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+import React, { useContext } from "react";
+import styled from "styled-components";
 
-import InvoiceContext from "contexts/Invoice"
+import InvoiceContext from "contexts/Invoice";
 
-import Editable from "components/Editable"
+import Editable from "components/Editable";
 
 const StyledFooter = styled.footer`
   position: absolute;
@@ -14,10 +14,10 @@ const StyledFooter = styled.footer`
   padding: 1cm;
 
   text-align: center;
-`
+`;
 
 const Footer = () => {
-  const store = useContext(InvoiceContext)
+  const { read, write } = useContext(InvoiceContext);
 
   return (
     <StyledFooter>
@@ -26,10 +26,16 @@ const Footer = () => {
       </p>
       <p>
         Graag binnen 30 dagen betalen onder vermelding van factuurnummer{" "}
-        <Editable store={store} field="reference" placeholder="yyyy.x" />.
+        <Editable
+          value={read`reference`}
+          onChange={v => write("reference", v)}
+          placeholder="yyyy.x"
+          minWidth={80}
+        />
+        .
       </p>
     </StyledFooter>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

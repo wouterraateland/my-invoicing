@@ -1,61 +1,20 @@
-import React, { useContext } from "react"
-import merge from "deepmerge"
-import ContentEditable from "react-simple-contenteditable"
+import React, { useCallback, useContext } from "react";
+import InvoiceContext from "contexts/Invoice";
 
-import _ from "utils"
-
-import InvoiceContext from "contexts/Invoice"
-
-import Currency, { currencyFormatter } from "components/Currency"
-
-const InvoiceLine = ({ description, quantity, amount, write }) => {
-  return (
-    <tr>
-      <ContentEditable
-        tabIndex={1}
-        onKeyPress={_.noop}
-        tagName="td"
-        html={description || "[Omschrijving]"}
-        onChange={(_, description) => write({ description })}
-      />
-      <ContentEditable
-        tabIndex={1}
-        onKeyPress={_.noop}
-        tagName="td"
-        html={quantity}
-        onChange={(_, quantity) =>
-          write({
-            quantity: parseInt(quantity, 10)
-          })
-        }
-      />
-      <ContentEditable
-        tabIndex={1}
-        onKeyPress={_.noop}
-        tagName="td"
-        html={currencyFormatter.format(amount)}
-        onChange={(_, amount) =>
-          write({
-            amount: parseFloat(
-              amount.replace(/[^0-9.,-]+/g, "").replace(",", ".")
-            )
-          })
-        }
-      />
-      <td>
-        <Currency amount={quantity * amount} />
-      </td>
-    </tr>
-  )
-}
+import InvoiceLine from "./InvoiceLine";
 
 const Table = () => {
-  const { state, write } = useContext(InvoiceContext)
+  const { read, write } = useContext(InvoiceContext);
 
-  const writeLine = (i, newValue) =>
-    write("invoiceLines", invoiceLines =>
-      _.replace(invoiceLines, i, merge(invoiceLines[i], newValue))
-    )
+  const onChangeLine = useCallback(
+    (i, v) =>
+      write("invoiceLines", invoiceLines =>
+        invoiceLines.map((line, j) =>
+          i === j ? (typeof v === "function" ? v(line) : v) : line
+        )
+      ),
+    [write]
+  );
 
   return (
     <table>
@@ -68,16 +27,12 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {state.invoiceLines.map((invoiceLine, i) => (
-          <InvoiceLine
-            key={i}
-            write={newValue => writeLine(i, newValue)}
-            {...invoiceLine}
-          />
+        {read("invoiceLines").map((line, i) => (
+          <InvoiceLine key={i} line={line} onChange={v => onChangeLine(i, v)} />
         ))}
       </tbody>
     </table>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;

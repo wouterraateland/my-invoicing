@@ -1,53 +1,83 @@
-import React, { useContext } from "react"
-import moment from "moment"
+import React, { useContext } from "react";
+import moment from "moment";
+import styled from "styled-components";
 
-import InvoiceContext from "contexts/Invoice"
+import InvoiceContext from "contexts/Invoice";
 
-import Editable from "components/Editable"
-import Label from "./Label"
+import Editable from "components/Editable";
+import Label from "./Label";
+
+const StrongEditable = styled(Editable)`
+  font-weight: 600;
+`;
 
 const InvoiceMeta = () => {
-  const store = useContext(InvoiceContext)
+  const { read, write } = useContext(InvoiceContext);
 
   return (
     <>
-      <Editable
-        as="strong"
-        store={store}
-        field="to.company"
+      <StrongEditable
+        value={read`to.company`}
+        onChange={v => write(`to.company`, v)}
         placeholder="[Bedrijfsnaam]"
+        minWidth={85}
       />
       <br />
       <span>
-        Tav <Editable store={store} field="to.name" placeholder="[Naam]" />
+        Tav{" "}
+        <Editable
+          value={read`to.name`}
+          onChange={v => write(`to.name`, v)}
+          placeholder="[Naam]"
+          minWidth={41}
+        />
       </span>
       <br />
-      <Editable store={store} field="to.address" placeholder="[Adres]" />
+      <Editable
+        value={read`to.address`}
+        onChange={v => write(`to.address`, v)}
+        placeholder="[Adres]"
+        minWidth={40}
+      />
       <br />
       <Editable
-        store={store}
-        field="to.zipcode"
+        value={read`to.zipcode`}
+        onChange={v => write(`to.zipcode`, v)}
         placeholder="[Postcode]"
-      />, <Editable store={store} field="to.city" placeholder="[Woonplaats]" />
+        minWidth={57}
+      />
+      ,{" "}
+      <Editable
+        value={read`to.city`}
+        onChange={v => write(`to.city`, v)}
+        placeholder="[Woonplaats]"
+        minWidth={72}
+      />
       <br />
       <br />
       <strong>FACTUUR</strong>
       <br />
       <Label>Factuurdatum</Label>
       <Editable
-        store={store}
+        type="date"
+        format="dd-mm-yyyy"
+        value={moment(read`invoiceDate`).format("YYYY-MM-DD")}
+        onChange={v => write(`invoiceDate`, moment(v).unix() * 1000)}
         field="invoiceDate"
-        format={m => m.format("DD-MM-YYYY")}
-        parse={moment}
-        placeholder={moment()}
+        minWidth={120}
       />
       <br />
       <Label>Factuurnummer</Label>
-      <Editable store={store} field="reference" placeholder="yyyy.x" />
+      <Editable
+        value={read`reference`}
+        onChange={v => write(`reference`, v)}
+        placeholder="yyyy.x"
+        minWidth={50}
+      />
       <br />
       <br />
     </>
-  )
-}
+  );
+};
 
-export default InvoiceMeta
+export default InvoiceMeta;

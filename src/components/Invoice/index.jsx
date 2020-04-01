@@ -1,16 +1,16 @@
-import React from "react"
+import React from "react";
 
-import { InvoiceProvider } from "contexts/Invoice"
+import { InvoiceProvider } from "contexts/Invoice";
 
-import Helmet from "./Helmet"
-import Paper from "./Paper"
-import Header from "./Header"
-import Meta from "./Meta"
-import Table from "./Table"
-import Summary from "./Summary"
-import Footer from "./Footer"
+import Helmet from "./Helmet";
+import Paper from "./Paper";
+import Header from "./Header";
+import Meta from "./Meta";
+import Table from "./Table";
+import Summary from "./Summary";
+import Footer from "./Footer";
 
-import Controls from "./Controls"
+import Controls from "./Controls";
 
 const Invoice = ({ invoiceId }) => {
   return (
@@ -28,7 +28,7 @@ const Invoice = ({ invoiceId }) => {
       </Paper>
       <Controls />
     </InvoiceProvider>
-  )
-}
+  );
+};
 
-export default Invoice
+export default Invoice;

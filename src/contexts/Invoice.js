@@ -1,18 +1,22 @@
-import React, { createContext } from "react"
-import moment from "moment"
+import React, { createContext, useMemo } from "react";
+import moment from "moment";
 
-import useStore from "hooks/useStore"
+import useStore from "hooks/useStore";
 
-const InvoiceContext = createContext({})
+const InvoiceContext = createContext({});
 
 export const InvoiceProvider = ({ invoiceId, invoice, ...rest }) => {
-  const value = useStore({
-    name: `my-invoicing/invoices/${invoiceId}`,
-    initialState: invoice
-  })
+  const storeConfig = useMemo(
+    () => ({
+      name: `my-invoicing/invoices/${invoiceId}`,
+      initialState: invoice
+    }),
+    [invoiceId, invoice]
+  );
+  const value = useStore(storeConfig);
 
-  return <InvoiceContext.Provider value={value} {...rest} />
-}
+  return <InvoiceContext.Provider value={value} {...rest} />;
+};
 
 InvoiceProvider.defaultProps = {
   invoice: {
@@ -33,6 +37,6 @@ InvoiceProvider.defaultProps = {
       }
     ]
   }
-}
+};
 
-export default InvoiceContext
+export default InvoiceContext;

@@ -6,17 +6,17 @@ const pxPer = {
   pc: 96 / 6,
   pt: 96 / 72,
   px: 1
-}
+};
 
-const units = Object.keys(pxPer)
+const units = Object.keys(pxPer);
 
 const getUnit = s => {
-  return units.find(unit => s.endsWith(unit))
-}
+  return units.find(unit => s.endsWith(unit));
+};
 
 export const convertToUnit = unit => s => {
-  const [value, currentUnit] = [parseFloat(s), getUnit(s)]
+  const [value, currentUnit] = [parseFloat(s), getUnit(s)];
   return units.includes(unit) && units.includes(currentUnit)
     ? (value * pxPer[currentUnit]) / pxPer[unit]
-    : null
-}
+    : null;
+};

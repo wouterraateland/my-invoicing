@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const Button = styled.button`
   cursor: pointer;
@@ -20,6 +20,6 @@ const Button = styled.button`
     background-color: #1d48e2;
     transform: translate(0, -0.125em);
   }
-`
+`;
 
-export default Button
+export default Button;

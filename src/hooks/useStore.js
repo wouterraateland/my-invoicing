@@ -1,55 +1,73 @@
-import { useState } from "react"
-import merge from "deepmerge"
-import isPlainObject from "is-plain-object"
+import { useCallback, useMemo, useState } from "react";
+import merge from "deepmerge";
+import isPlainObject from "is-plain-object";
 
-import { identity, constant } from "utils/functions"
+import { identity, constant } from "utils/functions";
 
 const options = {
   isMergeableObject: isPlainObject
-}
+};
 
-const getParts = (key, split) =>
-  Array.isArray(key) ? key : split ? key.split(".") : [key]
+const splitKey = (key, split) =>
+  Array.isArray(key) ? key : split ? key.split(".") : [key];
+
+const get = obj => (key, defaultValue = undefined, split = true) =>
+  splitKey(key, split).reduce(
+    (value, part) => (value[part] === undefined ? defaultValue : value[part]),
+    obj
+  );
 
 const useStore = ({
   initialState,
   rootReducer = identity,
   enhancer = identity
 }) => {
-  const [state, setState] = useState(initialState || {})
+  const [state, _setState] = useState(initialState || {});
 
-  const read = (key, defaultValue = undefined, split = true) =>
-    getParts(key, split).reduce(
-      (value, part) => (value[part] === undefined ? defaultValue : value[part]),
-      state
-    )
+  const read = useMemo(() => get(state), [state]);
 
-  return {
-    state,
-    read,
-    setState: newState =>
-      setState(state => enhancer(merge(state, newState, options))),
-    dispatch: action => setState(state => enhancer(rootReducer(state, action))),
-    write: (key, newValue, split = true) => {
-      const parts = getParts(key, split)
+  const setState = useCallback(
+    newState => _setState(state => enhancer(merge(state, newState, options))),
+    [enhancer]
+  );
 
-      return setState(state =>
+  const dispatch = useCallback(
+    action => _setState(state => enhancer(rootReducer(state, action))),
+    [enhancer, rootReducer]
+  );
+
+  const write = useCallback(
+    (key, newValue, split = true) => {
+      const parts = splitKey(key, split);
+
+      return _setState(state =>
         enhancer(
           merge(
             state,
             parts.reduceRight(
               (v, part) => ({ [part]: v }),
-              typeof newValue === "function" ? newValue(read(parts)) : newValue
+              typeof newValue === "function"
+                ? newValue(get(state)(parts))
+                : newValue
             ),
             options
           )
         )
-      )
-    }
-  }
-}
+      );
+    },
+    [enhancer]
+  );
 
-export default useStore
+  return {
+    state,
+    read,
+    setState,
+    dispatch,
+    write
+  };
+};
+
+export default useStore;
 
 export const createPersistentStoreCreator = ({
   serialize,
@@ -66,7 +84,7 @@ export const createPersistentStoreCreator = ({
           .filter(persistKey)
           .reduce((acc, key) => ({ ...acc, [key]: state[key] }), {})
       )
-    )
-    return state
+    );
+    return state;
   }
-})
+});

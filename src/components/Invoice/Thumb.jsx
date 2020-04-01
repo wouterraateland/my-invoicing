@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const ThumbContainer = styled.div`
   padding: 0.5em;
-`
+`;
 
 const Thumb = ({ reference, invoiceDate }) => {
   return (
@@ -11,7 +11,7 @@ const Thumb = ({ reference, invoiceDate }) => {
       <h2>{reference}</h2>
       {invoiceDate}
     </ThumbContainer>
-  )
-}
+  );
+};
 
-export default Thumb
+export default Thumb;

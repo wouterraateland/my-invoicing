@@ -1,17 +1,17 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+import React, { useCallback, useContext } from "react";
+import styled from "styled-components";
 // import _ from "utils"
 
-import ProfileContext from "contexts/Profile"
+import ProfileContext from "contexts/Profile";
 // import useWindowSize from "hooks/useWindowSize"
 
-import DropZone from "components/DropZone"
+import DropZone from "components/DropZone";
 
-import defaultBackground from "assets/default-background.svg"
+import defaultBackground from "assets/default-background.svg";
 
 const PAPER_DIMENSIONS = {
   A4: { width: "210mm", height: "296.9mm" }
-}
+};
 
 const StyledPaper = styled.article`
   position: relative;
@@ -65,27 +65,33 @@ const StyledPaper = styled.article`
     top: 50%;
     transform: translate(-50%, -50%) scale(${props => props.scale});
   } */};
-`
+`;
 
 const Paper = props => {
-  const { read, write } = useContext(ProfileContext)
+  const { read, write } = useContext(ProfileContext);
   // const { width, height } = useWindowSize()
 
-  function uploadLogo(file) {
-    var reader = new FileReader()
+  const uploadLogo = useCallback(
+    file => {
+      var reader = new FileReader();
 
-    reader.onloadend = () => {
-      write("background", reader.result)
-    }
+      reader.onloadend = () => {
+        write("background", reader.result);
+      };
 
-    reader.readAsDataURL(file)
-  }
+      reader.readAsDataURL(file);
+    },
+    [write]
+  );
 
-  function handleDrop(event) {
-    if (event.dataTransfer.files.length > 0) {
-      uploadLogo(event.dataTransfer.files[0])
-    }
-  }
+  const handleDrop = useCallback(
+    event => {
+      if (event.dataTransfer.files.length > 0) {
+        uploadLogo(event.dataTransfer.files[0]);
+      }
+    },
+    [uploadLogo]
+  );
 
   // const dimensions = PAPER_DIMENSIONS[props.format]
   // const scale = Math.min(
@@ -93,7 +99,7 @@ const Paper = props => {
   //   height / _.convertToUnit("px")(dimensions.height),
   //   1
   // )
-  const scale = 1
+  const scale = 1;
 
   return (
     <DropZone
@@ -103,11 +109,11 @@ const Paper = props => {
       {...props}
       scale={scale}
     />
-  )
-}
+  );
+};
 
 Paper.defaultProps = {
   format: "A4"
-}
+};
 
-export default Paper
+export default Paper;

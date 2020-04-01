@@ -1,13 +1,13 @@
-import React, { createContext } from "react"
+import React, { createContext } from "react";
 
-import useInvoices from "hooks/useInvoices"
+import useInvoices from "hooks/useInvoices";
 
-const InvoicesContext = createContext({})
+const InvoicesContext = createContext({});
 
 export const InvoicesProvider = props => {
-  const value = useInvoices()
+  const value = useInvoices();
 
-  return <InvoicesContext.Provider value={value} {...props} />
-}
+  return <InvoicesContext.Provider value={value} {...props} />;
+};
 
-export default InvoicesContext
+export default InvoicesContext;

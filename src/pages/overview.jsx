@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
-import { navigate } from "@reach/router"
+import React, { useCallback, useContext } from "react";
+import styled from "styled-components";
+import { navigate } from "@reach/router";
 
-import InvoicesContext from "contexts/Invoices"
+import InvoicesContext from "contexts/Invoices";
 
-import { Float } from "components/ui"
-import InvoiceThumb from "components/Invoice/Thumb"
+import { Float } from "components/ui";
+import InvoiceThumb from "components/Invoice/Thumb";
 
 const Header = styled.header`
   padding: 1em 2em;
@@ -14,7 +14,7 @@ const Header = styled.header`
     text-transform: none;
     margin: 0;
   }
-`
+`;
 
 const Main = styled.main`
   padding: 1em;
@@ -22,15 +22,15 @@ const Main = styled.main`
   border-radius: 0.5em;
 
   background-color: #fff;
-`
+`;
 
 const OverviewPage = () => {
-  const { invoices, addInvoice } = useContext(InvoicesContext)
+  const [invoices, { createInvoice }] = useContext(InvoicesContext);
 
-  async function createInvoice() {
-    const id = await addInvoice()
-    navigate(`/invoice/${id}`)
-  }
+  const onCreateInvoice = useCallback(async () => {
+    const id = await createInvoice();
+    navigate(`/invoice/${id}`);
+  }, [createInvoice]);
 
   return (
     <>
@@ -42,7 +42,7 @@ const OverviewPage = () => {
           <h2>Invoices</h2>
         </Float.Left>
         <Float.Right>
-          <button onClick={createInvoice}>Create invoice</button>
+          <button onClick={onCreateInvoice}>Create invoice</button>
         </Float.Right>
         <hr />
         {invoices.map(invoice => (
@@ -50,7 +50,7 @@ const OverviewPage = () => {
         ))}
       </Main>
     </>
-  )
-}
+  );
+};
 
-export default OverviewPage
+export default OverviewPage;
